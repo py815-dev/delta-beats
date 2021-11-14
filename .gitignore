@@ -1,0 +1,12 @@
+# .env holds login tokens
+.env
+# .vscode holds personal vscode settings
+.vscode/
+# data.json holds the config profiles for the bot, including api keys
+data.json
+# pyc files are compiled files and not necessary.
+.pyc
+# Pycache folders are not needed either.
+__pycache__/
+# Lavalink jar should be downloaded by Delta instead
+Lavalink.jar

@@ -1,0 +1,8 @@
+aiohttp
+python-twitch-client
+git+https://github.com/Pycord-Development/archive/master.zip#egg=discord.py[voice]
+youtube-search-python
+lavalink
+requests
+clint
+async_timeout

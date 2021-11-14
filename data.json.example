@@ -1,0 +1,21 @@
+{
+    "token": "NzUz0pOfUGUGhFouyFuyiFyioOYgoioIUg-UKFUGugKUYIuyKyuyuYyfukGf",
+    "twitch-client-id": "uk2f4535kgj5k3ig5i5",
+    "client_id":"753017639932",
+    "twitch-oauth": "h123h340dqzfb90csh",
+    "website-url": "https://delta-beats.github.io/",
+    "duckdns-token": "5ji5ic-ishihv-1fwef2-wqe3",
+    "discord-oauth-client-id": "753017639932",
+    "discord-oauth-client-secret": "bHpGSJugl_uigh84eva",
+    "java-home": "/usr/lib/jvm/default-java",
+    "soundcloud-client-id": "hOhgosvgiGyisuiU0sa",
+    "lavalink-nodes": [
+        {
+            "host": "0.0.0.0",
+            "port": 7000,
+            "region": "eu",
+            "password": "youshallnotpass",
+            "name": "local-node"
+        }
+    ]
+}
