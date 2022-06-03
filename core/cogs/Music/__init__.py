@@ -168,11 +168,12 @@ class Music(commands.Cog):
                 latest_release_download_url = release_info["assets"][0][
                     "browser_download_url"
                 ]
+                print(latest_release_download_url)
                 latest_release_build = release_info["tag_name"][-4:]
                 async with session.get(latest_release_download_url) as raw_download:
                     if (
                         os.path.exists("Music/Lavalink/Lavalink.jar")
-                        and latest_release_build
+                        and not latest_release_build
                         in str(Popen(
                             "java", "-jar", "Lavalink.jar", "--version"
                         ).stdout.read())
@@ -187,24 +188,28 @@ class Music(commands.Cog):
                         "info",
                     )
                     raw_download = await raw_download.read()
-                    await download_dest.write(raw_download)
+                    #await download_dest.write(raw_download)
+                    #Popen(["wget", latest_release_download_url])
+                    Popen(["cp", "/home/pi/delta-beats/core/Lavalink.jar", "/home/pi/delta-beats/core/cogs/Music/Lavalink/Lavalink/jar"])
                     self.bot.log("Downloaded Lavalink jar. Executing...", "info")
                     # Wait for the Lavalink server to start. On a 64 bit x86 ubuntu machine, this typically takes about 13 seconds
+                    '''
                     self.lavalink_proc = (  # pylint:disable=no-member
                         await asyncio.subprocess.create_subprocess_exec(
                             *[
                                 self.bot.get_config("java-home"),
                                 "-Djdk.tls.client.protocols=TLSv1.2",
                                 "-jar",
-                                "Lavalink.jar",
+                                "/home/pi/delta-beats/core/Lavalink.jar",
                             ],
                             stdout=asyncio.subprocess.PIPE,
                             cwd="cogs/Music/Lavalink",
                         )
                     )
-                    stdout = await self.lavalink_proc.stdout.readline()
-                    if "Unable to access jarfile" in str(stdout):
-                        self.log("Your jarfile may be corrupted. Try restarting the bot.", "error")
+                    '''
+                    #stdout = await self.lavalink_proc.stdout.readline()
+                    #if "Unable to access jarfile" in str(stdout):
+                    #    self.log("Your jarfile may be corrupted. Try restarting the bot.", "error")
                     self.bot.log(
                         f"Lavalink is executable started, PID {self.lavalink_proc.pid}", "info"
                     )

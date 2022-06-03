@@ -5,7 +5,7 @@ This file is used to load the required cogs for Delta.
 from time import time
 import os
 from clint.textui import colored
-from discord import discord
+import discord
 from discord.ext import commands
 
 def load_all(bot:commands.Bot):

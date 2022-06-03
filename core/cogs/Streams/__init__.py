@@ -1,7 +1,7 @@
 import asyncio
 from aiohttp import ClientSession
 from discord.ext import commands, tasks
-from discord.commands import slash_command
+from discord.ext.commands import slash_command
 
 
 class Streams(commands.Cog):
