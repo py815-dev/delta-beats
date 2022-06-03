@@ -190,10 +190,9 @@ class Music(commands.Cog):
                     raw_download = await raw_download.read()
                     #await download_dest.write(raw_download)
                     #Popen(["wget", latest_release_download_url])
-                    Popen(["cp", "/home/pi/delta-beats/core/Lavalink.jar", "/home/pi/delta-beats/core/cogs/Music/Lavalink/Lavalink/jar"])
+                    Popen(["cp", "/home/pi/delta-beats/core/Lavalink.jar", "/home/pi/delta-beats/core/cogs/Music/Lavalink/Lavalink.jar"])
                     self.bot.log("Downloaded Lavalink jar. Executing...", "info")
                     # Wait for the Lavalink server to start. On a 64 bit x86 ubuntu machine, this typically takes about 13 seconds
-                    '''
                     self.lavalink_proc = (  # pylint:disable=no-member
                         await asyncio.subprocess.create_subprocess_exec(
                             *[
@@ -206,15 +205,14 @@ class Music(commands.Cog):
                             cwd="cogs/Music/Lavalink",
                         )
                     )
-                    '''
-                    #stdout = await self.lavalink_proc.stdout.readline()
-                    #if "Unable to access jarfile" in str(stdout):
-                    #    self.log("Your jarfile may be corrupted. Try restarting the bot.", "error")
+                    stdout = await self.lavalink_proc.stdout.readline()
+                    if "Unable to access jarfile" in str(stdout):
+                        self.log("Your jarfile may be corrupted. Try restarting the bot.", "error")
                     self.bot.log(
                         f"Lavalink is executable started, PID {self.lavalink_proc.pid}", "info"
                     )
                     try:
-                        await asyncio.wait_for(self.wait_for_lavalink(), timeout=120)
+                        await asyncio.wait_for(self.wait_for_lavalink(), timeout=10)
                         self.bot.log(
                             "Started internal lavalink server. You can ignore the reflective access warning; see https://github.com/freyacodes/Lavalink/issues/295.",
                             "info",
@@ -247,7 +245,7 @@ class Music(commands.Cog):
             elif "Invalid or corrupt jarfile" in str(line):
                 self.bot.log("Lavalink jar is corrupt, re-downloading...", "error")
             else:
-                if i == 50:
+                if i >= 50:
                     await asyncio.sleep(0.1)
         
 

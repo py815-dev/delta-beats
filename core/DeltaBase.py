@@ -19,6 +19,7 @@ class Delta(commands.Bot):
         super().__init__(command_prefix, description=description, **options)
         self.classes = classes
         self.cogloader = cogloader
+        self.debug_guilds=self.get_config('test_guilds')
 
     def get_config(self, key_type: str):
         json_file = open("../data.json", "rt", encoding="utf8", )
