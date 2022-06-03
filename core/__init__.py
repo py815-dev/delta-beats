@@ -4,7 +4,7 @@ from discord.ext import commands, tasks
 import discord
 import twitch
 from clint.textui import colored
-from DeltaBase import Delta
+import DeltaBase
 import cogloader
 
 os.listdir()
@@ -18,8 +18,8 @@ dMMMMP" dMMMMMP dMMMMMP dMP   dMP dMP
 '''))
 
 players = {}
-bot = Delta(description="An open sourec music bot with a dashboard.", command_prefix=[
-                      'd!', 'D!'], case_insensitive=True, help_command=None, intents=discord.Intents.default(), shard_count=10, cogloader=cogloader)
+bot = DeltaBase.Delta(description="An open sourec music bot with a dashboard.", command_prefix=[
+                      'd!', 'D!'], case_insensitive=True, help_command=None, intents=discord.Intents.all(), shard_count=10, cogloader=cogloader, debug_guilds=DeltaBase.get_config('debug_guilds'), owner_id=DeltaBase.get_config('owner_id'))
 
 TWITCH_STREAM_API_ENDPOINT_V5 = "https://api.twitch.tv/kraken/streams/{}"
 

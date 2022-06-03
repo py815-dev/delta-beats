@@ -9,6 +9,16 @@ import classes
 
 log = logging.getLogger(__name__)
 
+def get_config(key_type: str):
+    json_file = open("../data.json", "rt", encoding="utf8", )
+    api_keys = json.load(json_file)
+    json_file.close()
+    if key_type in api_keys:
+        return api_keys[key_type]
+    else:
+        raise CommandInvokeError(
+            f"""The shared API key {key_type} has not been set. Please set it in data.json"""
+        )
 
 class Delta(commands.Bot):
     """
@@ -19,18 +29,9 @@ class Delta(commands.Bot):
         super().__init__(command_prefix, description=description, **options)
         self.classes = classes
         self.cogloader = cogloader
-        self.debug_guilds=self.get_config('test_guilds')
+        self.get_config = get_config
 
-    def get_config(self, key_type: str):
-        json_file = open("../data.json", "rt", encoding="utf8", )
-        api_keys = json.load(json_file)
-        json_file.close()
-        if key_type in api_keys:
-            return api_keys[key_type]
-        else:
-            raise CommandInvokeError(
-                f"""The shared API key {key_type} has not been set. Please set it in data.json"""
-            )
+
 
     def log(self, message, log_type: str, newline_prefix: bool = False):
         if log_type == "info":
